@@ -31,3 +31,7 @@ git add 后可以接要跟踪的文件或目录的路径。如果是目录的话
 - git rm： 从暂存区移除文件。如果手动删除会出现**Changed but not updated**，</br>
 当git rm后，这时git status后会出现**Changes to be committed**，再commit和push进行删除git仓库中的文件。
 - git rm --cached：将文件从git仓库中删除，但是**工作目录中的文件保存**
+- git log：查看历史提交记录**-p 显示每次提交差异内容，-2 仅显示最近两次更新**
+- git mv <file1> <file2>:将file1重命名为file2
+- git reset HEAD <file>：取消已暂存的文件。
+- git checkout --<file>:取消对文件的修改（**如果该文件被添加到暂存区过，那么拉去的是暂存区的文件，如果从来没有被添加到暂存区过，那么拉去的是git仓库中的**）
