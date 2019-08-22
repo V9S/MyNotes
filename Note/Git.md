@@ -23,5 +23,11 @@
 文件只要出现在 **Changed but not updated**这行下面，说明已跟踪文件的内容发生了变化，但还没有放到暂存区。</br>
 同一个文件同时出现在上述两个标识下边，标识在进行暂存后又对该文件进行了修改，这时进行提交是提交的修改之前的文件，如果需要提交新更改的文件，需要从新将文件放入暂存区（commit add）
 - git add <file>：踪一个新文件</br>
-- git add ：后可以接要跟踪的文件或目录的路径。如果是目录的话，就说明要递归跟踪所有该目录下的文件。
-- git commit ：提交更新
+git add 后可以接要跟踪的文件或目录的路径。如果是目录的话，就说明要递归跟踪所有该目录下的文件。
+- git commit -m "提交信息"：提交更新</br>
+提交的是暂存区(git add)的文件。
+- **git commit -a：自动把所有已经跟踪过的文件暂存起来一并提交，从而跳过 git add 步骤**
+
+- git rm： 从暂存区移除文件。如果手动删除会出现**Changed but not updated**，</br>
+当git rm后，这时git status后会出现**Changes to be committed**，再commit和push进行删除git仓库中的文件。
+- git rm --cached：将文件从git仓库中删除，但是**工作目录中的文件保存**
