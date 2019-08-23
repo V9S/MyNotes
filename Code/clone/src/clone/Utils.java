@@ -6,7 +6,7 @@ public class Utils {
 
 	public static void main(String[] args) {
 //		ShallowClone origin = new ShallowClone();
-		DeepClone origin = new DeepClone(); 
+		DeepClone origin = new DeepClone();
 		Object n = new Object();
 		ArrayList<Object> t = new ArrayList<>();
 		origin.setA(1);
@@ -15,9 +15,10 @@ public class Utils {
 		origin.setO(n);
 		origin.setT(t);
 
-		ShallowClone cloneElement = null;
+//		ShallowClone cloneElement = null;
+		DeepClone cloneElement = null;
 		try {
-			cloneElement = (ShallowClone) origin.clone();
+			cloneElement = (DeepClone) origin.clone();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

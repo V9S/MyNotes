@@ -7,26 +7,24 @@ public class DeepClone implements Cloneable{
 	public int a;
 	public Integer b ;
 	private int c ;
-	public Object o;
+	public UtilsClass o = null;
 	public ArrayList<Object> t;
 	
 	@Override
 	public Object clone() throws CloneNotSupportedException {// 重写Object中的clone()方法
 		
 		DeepClone deepClone = (DeepClone) super.clone();
-//		deepClone.setO((DeepClone)deepClone.getO().clone());
+		deepClone.setO((UtilsClass) deepClone.o.clone());
 		deepClone.setT((ArrayList<Object>) deepClone.getT().clone());
 		return deepClone;
 	}
 	
-	public Object getO() {
+	public UtilsClass getO() {
 		return o;
 	}
-
-	public void setO(Object o) {
-		this.o = o;
+	public void setO(Object n) {
+		this.o = n;
 	}
-
 	public int getA() {
 		return a;
 	}
