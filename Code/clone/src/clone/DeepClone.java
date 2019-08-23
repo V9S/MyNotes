@@ -22,8 +22,8 @@ public class DeepClone implements Cloneable{
 	public UtilsClass getO() {
 		return o;
 	}
-	public void setO(Object n) {
-		this.o = n;
+	public void setO(UtilsClass o) {
+		this.o = o;
 	}
 	public int getA() {
 		return a;
