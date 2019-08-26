@@ -18,7 +18,7 @@ public class SerializableDeepClone implements Serializable {
 	public int a;
 	public Integer b ;
 	private int c ;
-	public UtilsClass o = null;
+	public SerializableDeepClone o = null;
 	public ArrayList<Object> t;
 	
 	
@@ -50,17 +50,18 @@ public class SerializableDeepClone implements Serializable {
 	public void setC(int c) {
 		this.c = c;
 	}
-	public UtilsClass getO() {
-		return o;
-	}
-	public void setO(UtilsClass o) {
-		this.o = o;
-	}
+	
 	public ArrayList<Object> getT() {
 		return t;
 	}
 	public void setT(ArrayList<Object> t) {
 		this.t = t;
+	}
+	public SerializableDeepClone getO() {
+		return o;
+	}
+	public void setO(SerializableDeepClone o) {
+		this.o = o;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;

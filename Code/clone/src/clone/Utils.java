@@ -8,18 +8,20 @@ public class Utils {
 //		ShallowClone origin = new ShallowClone();
 //		DeepClone origin = new DeepClone();
 		SerializableDeepClone origin = new SerializableDeepClone();
-		Object n = new Object();
+		SerializableDeepClone n = new SerializableDeepClone();
 		ArrayList<Object> t = new ArrayList<>();
 		origin.setA(1);
 		origin.setB(2);
 		origin.setC(3);
-
 		origin.setT(t);
+		origin.setO(n);
 
 //		ShallowClone cloneElement = null;
 //		DeepClone cloneElement = null;
 		SerializableDeepClone cloneElement=null;
 		try {
+//			cloneElement = (ShallowClone) origin.clone();
+//			cloneElement = (DeepClone) origin.clone();
 			cloneElement = (SerializableDeepClone) origin.serializableDeepClone();
 		} catch (Exception e) {
 			e.printStackTrace();
