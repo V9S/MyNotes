@@ -22,7 +22,7 @@
     oos.writeObject(this);
     oos.flush();
 
-    ByteArrayInputStream bis=new ByteArrayInputStream(bos.toByteArray());
+    ByteArrayInputStream bis=new ByteArrayInputStream(bos.toByteArray());//将对象从流中取出
     ObjectInputStream ois=new ObjectInputStream(bis);
     return (Person)ois.readObject();
 
