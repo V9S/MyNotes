@@ -15,7 +15,16 @@
 #### 方案1：通过浅克隆的递归方式####
 当被克隆对象中包含引用数据类型，对引用数据类型进行浅克隆，从而整体上实现深克隆。
 #### 方案2：通过序列化操作实现深克隆 ####
+将需要复制的对象进行序列化，将对象写入流中。再从流中读取对象。完成反序列化。
+	
+    ByteArrayOutputStream bos=new ByteArrayOutputStream();// 将对象写入流中
+    ObjectOutputStream oos= null;
+    oos.writeObject(this);
+    oos.flush();
 
+    ByteArrayInputStream bis=new ByteArrayInputStream(bos.toByteArray());
+    ObjectInputStream ois=new ObjectInputStream(bis);
+    return (Person)ois.readObject();
 
 
 

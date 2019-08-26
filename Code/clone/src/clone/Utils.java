@@ -6,19 +6,21 @@ public class Utils {
 
 	public static void main(String[] args) {
 //		ShallowClone origin = new ShallowClone();
-		DeepClone origin = new DeepClone();
+//		DeepClone origin = new DeepClone();
+		SerializableDeepClone origin = new SerializableDeepClone();
 		Object n = new Object();
 		ArrayList<Object> t = new ArrayList<>();
 		origin.setA(1);
 		origin.setB(2);
 		origin.setC(3);
-		origin.setO(n);
+
 		origin.setT(t);
 
 //		ShallowClone cloneElement = null;
-		DeepClone cloneElement = null;
+//		DeepClone cloneElement = null;
+		SerializableDeepClone cloneElement=null;
 		try {
-			cloneElement = (DeepClone) origin.clone();
+			cloneElement = (SerializableDeepClone) origin.serializableDeepClone();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
