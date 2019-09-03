@@ -41,3 +41,7 @@ git add 后可以接要跟踪的文件或目录的路径。如果是目录的话
 - git branch -d *分支名*：删除分支
 - git merge *分支名*：合并分支
 - git branch：列出全部分支
+
+先执行 git config --global credential.helper store
+然后执行 git pull origin master
+输入用户名密码后可以记住用户名密码，避免频繁输入
