@@ -9,24 +9,16 @@
 	<name>first_springboot Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.4.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
-	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-   			<groupId>org.springframework</groupId>
-    		<artifactId>spring-beans</artifactId>
-    		<version>4.2.5.RELEASE</version>
-		</dependency>
-	</dependencies>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.4.RELEASE</version>
+    </parent>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+    </dependencies>
 	<build>
 		<finalName>first_springboot</finalName>
 	</build>
