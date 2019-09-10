@@ -34,3 +34,8 @@
 - 删除表空间
 
     drop tablespace np_test including contents and datafiles cascade constraint;
+## 错误 ##
+- ORA-39001: 参数值无效
+  ORA-39000: 转储文件说明错误
+  ORA-39143: 转储文件 "E:\a.dmp" 可能是原始的导出转储文件
+> 问题原因：dmp文件是使用exp命令导出的，故应该用imp命令导出，而不能用impdp命令。
