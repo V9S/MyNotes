@@ -1,5 +1,9 @@
-package Algorithms;
+package algorithms;
 
+/**
+ * @author ZLM
+ * @date 2019/09/16
+ */
 public class Run {
 	public static void main(String[] args) {
 		TwoSum q1 =new TwoSum();
