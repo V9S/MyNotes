@@ -39,3 +39,28 @@
   ORA-39000: 转储文件说明错误
   ORA-39143: 转储文件 "E:\a.dmp" 可能是原始的导出转储文件
 > 问题原因：dmp文件是使用exp命令导出的，故应该用imp命令导出，而不能用impdp命令。
+
+### 删除100行以后的数据 ###
+
+- 查询：select * from (select rownum rw,ID  from np_user order by ID desc ) where rw>100 ;
+
+- 删除：delete from np_user where ID in （select ID from (select rownum rw, ID from np_user order by ID desc ) where rw>100 ）;
+
+### 创建新字段 ###
+- 默认非空：alter table np_user add test varchar(20 char)  Default 0 NOT NULL;
+
+
+
+- 默认为空：alter table np_user add test varchar(20 char)  NULL;
+### 删除字段 ###
+
+ALTER TABLE np_user DROP COLUMN test; 
+
+### 字段间数据导入 ###
+- 同表字段间数据导入：update np_user set test = sex;
+- 异表间字段数据导入：update np_user t set test = (select sex  from np_user_temp b where t.id=b.id  );
+### 根据已有表创建新表 ###
+- create table np_user_temp as select * from np_user;
+
+
+
