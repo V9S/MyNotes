@@ -59,8 +59,21 @@ ALTER TABLE np_user DROP COLUMN test;
 ### 字段间数据导入 ###
 - 同表字段间数据导入：update np_user set test = sex;
 - 异表间字段数据导入：update np_user t set test = (select sex  from np_user_temp b where t.id=b.id  );
+- 不同数据库之间：update  npzc_xgd.gams_card t  set (t.cunfdd_old,t.shiybm_old,t.shiyr_old)=(select s.存放地名称,s.领用单位名,s.人员编号  from zcgl_jy.s1 s where t.billcode=s.仪器编号 )
 ### 根据已有表创建新表 ###
 - create table np_user_temp as select * from np_user;
+- 创建新表：CREATE TABLE contrast_xgd(
+departmentid varchar(100),
+departmentname varchar（100）,
+sdepartmentid  varchar（100）,
+sdepartmentname varchar（100）
+)
+
+- 将表的只读模式改为读写模式，可以在plsql中手动添加数据
+### 删除表 ###
+- 删除表：drop table contrast_xgd
+- 强制删除表（带有外键）：drop table gams_jc_department cascade constraints;
+- 删除表中数据：delete from tablename
 
 
 
