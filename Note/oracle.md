@@ -74,6 +74,8 @@ sdepartmentname varchar（100）
 - 删除表：drop table contrast_xgd
 - 强制删除表（带有外键）：drop table gams_jc_department cascade constraints;
 - 删除表中数据：delete from tablename
+### 收回dba权限 ###
+- revoke dba from npzc_xgd;
 
 
 
