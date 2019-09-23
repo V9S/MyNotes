@@ -76,6 +76,7 @@ sdepartmentname varchar（100）
 - 删除表中数据：delete from tablename
 ### 收回dba权限 ###
 - revoke dba from npzc_xgd;
+- 
 
 
 
