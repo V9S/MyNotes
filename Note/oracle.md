@@ -75,8 +75,9 @@ sdepartmentname varchar（100）
 - 强制删除表（带有外键）：drop table gams_jc_department cascade constraints;
 - 删除表中数据：delete from tablename
 ### 收回dba权限 ###
-- revoke dba from npzc_xgd;
-- 
+- revoke dba from npzc_xgd
+### 当前用户被授予的角色 ###
+-  select * from user_role_privs;
 
 
 
