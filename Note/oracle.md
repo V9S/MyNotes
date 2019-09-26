@@ -78,6 +78,7 @@ sdepartmentname varchar（100）
 - revoke dba from npzc_xgd
 ### 当前用户被授予的角色 ###
 -  select * from user_role_privs;
+-  
 
 
 
