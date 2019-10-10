@@ -78,7 +78,9 @@ sdepartmentname varchar（100）
 - revoke dba from npzc_xgd
 ### 当前用户被授予的角色 ###
 -  select * from user_role_privs;
--  
+### 查询以0结尾的字段 ###
+- select telephone from  np_user where telephone like  '%0'
+- 查询包含5522的字段：select telephone from  np_user where telephone like  '%5522%'
 
 
 
