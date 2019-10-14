@@ -45,3 +45,5 @@ git add 后可以接要跟踪的文件或目录的路径。如果是目录的话
 先执行 git config --global credential.helper store
 然后执行 git pull origin master
 输入用户名密码后可以记住用户名密码，避免频繁输入
+
+- git status是发现有些文件是修改过的，但是如果要查看文件更改了哪些内容的话，可以使用git diff + 文件名进行查看
