@@ -81,6 +81,7 @@ sdepartmentname varchar（100）
 ### 查询以0结尾的字段 ###
 - select telephone from  np_user where telephone like  '%0'
 - 查询包含5522的字段：select telephone from  np_user where telephone like  '%5522%'
+- 使用plsql导出表，不同表空间、用户名无法导入
 
 
 
