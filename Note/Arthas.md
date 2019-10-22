@@ -1,0 +1,5 @@
+- linux下载：wget https://alibaba.github.io/arthas/arthas-boot.jar
+- 执行：java -jar arthas-boot.jar --target-ip 0.0.0.0
+- arthas-boot是Arthas的启动程序，它启动后，会列出所有的Java进程，用户可以选择需要诊断的目标进程。
+- dashboard 命令可以查看当前系统的实时数据面板。
+- 输入 Q 或者 Ctrl+C 可以退出dashboard命令。
