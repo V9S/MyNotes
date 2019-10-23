@@ -7,7 +7,7 @@
 - `sc` 命令来查找JVM里已经加载的类，如果搜索的是接口，还会搜索所有的实现类。通过`-d`参数，可以打印出类加载的具体信息，很方便查找类加载问题。
 - `sm`命令则是查找类的具体函数，通过`-d`参数可以打印函数的具体属性
 - `jad`命令来反编译代码，`--source-only`参数可以只打印出在反编译的源代码：
-- `watch`通过watch命令可以查看函数的参数/返回值/异常信息。输入 `Q` 或者 `Ctrl+C` 退出watch命令。
+- `watch`通过watch命令可以查看函数的参数/返回值/异常信息。输入 `Q` 或者 `Ctrl+C` 退出watch命令。如果想把获取到的结果展开，可以用-x参数：eg:watch com.example.demo.arthas.user.UserController * '{params, throwExp}' -x 2
 - 用 `exit` 或者 `quit` 命令可以退出Arthas。`exit/quit`命令只是退出当前session，arthas server还在目标进程中运行。想完全退出Arthas，可以执行 `shutdown` 命令。
 - `sysprop` 可以打印所有的System Properties信息。
 - 也可以指定单个key： `sysprop java.version`
