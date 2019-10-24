@@ -18,13 +18,15 @@
 将需要复制的对象进行序列化，将对象写入流中。再从流中读取对象。完成反序列化。
 	
     ByteArrayOutputStream bos=new ByteArrayOutputStream();// 将对象写入流中
-    ObjectOutputStream oos= null;
-    oos.writeObject(this);
-    oos.flush();
+    	ObjectOutputStream oos= null;
+    	oos.writeObject(this);
+    	oos.flush();
 
     ByteArrayInputStream bis=new ByteArrayInputStream(bos.toByteArray());//将对象从流中取出
-    ObjectInputStream ois=new ObjectInputStream(bis);
-    return (Person)ois.readObject();
+    	ObjectInputStream ois=new ObjectInputStream(bis);
+    	return (Person)ois.readObject();
+### Java 8 foreach&lambda ###
+
 
 
 
