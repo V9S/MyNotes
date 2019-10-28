@@ -9,3 +9,5 @@
 ### 快捷键 ###
 - 查看一个方法都被谁调用过：选中方法后Ctrl+Alt+H 或者Ctrl+Shift+G
 - 快速添加作者日期等注释信息：ALT + SHIFT +J
+- 进入列编辑模式：ALT + SHIFT + A
+- SHIFT + F2 ：将光标放在方法或者类上，打开文档
