@@ -11,3 +11,6 @@
 - 快速添加作者日期等注释信息：ALT + SHIFT +J
 - 进入列编辑模式：ALT + SHIFT + A
 - SHIFT + F2 ：将光标放在方法或者类上，打开文档
+- ctrl + shift + x : 将字母转换为大写
+- ctrl + shift + y : 将字母转换为小写
+- 
