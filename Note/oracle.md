@@ -27,6 +27,27 @@
 - 5、导入（在cmd下）
 
     impdp np_test/np_test@orcl directory=DMP_DIR dumpfile=NP_TEST.DMP  logfile=np_test.log;
+### 数据库导出 ###
+#### 普通导出 ####
+- 1、完全导出：
+
+	`exp xinxiaoyong/123456@127.0.0.1:1521/orcl file="e:\temp.dmp" full = y;`
+- 2、部分表的导入导出：
+
+	`exp(imp)  username/password@SERVICENAME:1521 file="e：\temp.dmp" tabels=(table1,table2,table3,...);`
+- 3、表空间tablespaces导入导出（一个数据库实例可以有N个表空间(tablespace)，一个表空间下可以有N张表(table)）：
+
+	`exp(imp)  username/password@SERVICENAME:1521 file="e:\temp.dmp" tablespaces=(tablespace1,tablespace2,tablespace3,...);`
+- 4、用户名username对象导入导出：
+
+	`exp(imp) username/password@SERVICENAME:1521 file="e:\temp.dmp" owner(username1,username2,username3);`
+#### 数据泵导出 ####
+- 1、创建目录
+- 2、导出数据库
+
+    `expdp xinxiaoyong/123456@127.0.0.1:1521 schemas=xinxiaoyong dumpfile=test.dmplogfile=test.log directory=testdata1;`
+（schemas：导出操作的用户名;dumpfile：导出的文件;logfile:导出的日志文件,可以不写；directory:创建的文件夹名称;remap_schema=源数据库用户名:目标数据库用户名,二者不同时必写，相同可以省略;）
+	
 ### 删除操作 ###
 - 删除用户
 
@@ -42,7 +63,9 @@
 
 ### 删除100行以后的数据 ###
 
-- 查询：select * from (select rownum rw,ID  from np_user order by ID desc ) where rw>100 ;
+- 查询：select * 
+- 
+-  (select rownum rw,ID  from np_user order by ID desc ) where rw>100 ;
 
 - 删除：delete from np_user where ID in （select ID from (select rownum rw, ID from np_user order by ID desc ) where rw>100 ）;
 
