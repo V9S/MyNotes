@@ -108,3 +108,7 @@ sdepartmentname varchar（100）
 
 
 
+- 关键词 DISTINCT 用于返回唯一不同的值。SELECT DISTINCT Company FROM Orders
+
+
+
