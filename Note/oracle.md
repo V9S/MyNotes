@@ -112,3 +112,15 @@ sdepartmentname varchar（100）
 
 
 
+
+- 查询登录次数：SELECT resource_name,resource_type,limit FROM dba_profiles WHERE profile='DEFAULT';
+
+
+
+- 设置登录次数无限次：alter profile default limit FAILED_LOGIN_ATTEMPTS unlimited;
+
+
+
+- 解锁锁定用户：alter user np_test_new account unlock;
+
+
