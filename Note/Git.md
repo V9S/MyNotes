@@ -47,4 +47,14 @@ git add 后可以接要跟踪的文件或目录的路径。如果是目录的话
 输入用户名密码后可以记住用户名密码，避免频繁输入
 
 - git status是发现有些文件是修改过的，但是如果要查看文件更改了哪些内容的话，可以使用git diff + 文件名进行查看
-- 
+#### git如何撤销commit(未push) ####
+撤销commit一般用git reset ，语法如下：
+
+    git reset [ --mixed | --soft | --hard] [<commit ID>]
+- 1.使用参数--mixed(默认参数)，如`git reset --mixed <commit ID>或git reset <commit ID>`
+撤销git commit，撤销git add，保留编辑器改动代码
+- 2.使用参数--soft，如`git reset --soft<commit ID>`
+撤销git commit，不撤销git add，保留编辑器改动代码
+- 3.使用参数--hard，如`git reset --hard <commit ID>`——**此方撤销git commit，撤销git add，删除编辑器改动代码
+
+输入git log，我们可以看到最近的3次提交，最近一次提交是test3，最早的一次是test1，其中一大串黄色的字母是commit id（版本号） 
