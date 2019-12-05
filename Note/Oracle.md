@@ -124,5 +124,11 @@ sdepartmentname varchar（100）
 - 解锁锁定用户：alter user np_test_new account unlock;
 
 - oracle违反唯一性约束，表定位SQL语句：`select cu.* from user_cons_columns cu, user_constraints au where cu.constraint_name = au.constraint_name and au.constraint_type = 'P' and au.constraint_name='SYS_C0054500';`
-
+- oracle违反完整性约束，标定位SQL语句：    `SELECT A.constraint_name, A.table_name, b.constraint_name
+  FROM user_constraints A, user_constraints b
+ WHERE A.constraint_type = 'R'
+   AND b.constraint_type = 'P'
+   AND A.r_constraint_name = b.constraint_name
+   AND A.constraint_name = UPPER('FKACFPI7FJUU60FQUY0S54CGYP5')`
+    
 
