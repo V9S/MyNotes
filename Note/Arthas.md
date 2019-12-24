@@ -16,3 +16,6 @@
 - `sysenv` 命令可以获取到环境变量。和`sysprop`命令类似。
 - `jvm` 命令会打印出JVM的各种详细信息。
 - 在Arthas里，有一个单独的`ognl`命令，可以动态执行代码。
+### 在windows下如何使用arthas ####
+- 执行as.bat [进程号]（该方法需要配置JAVA_HOME，可以直接运行）
+- 执行java -jar arthas-boot.jar
