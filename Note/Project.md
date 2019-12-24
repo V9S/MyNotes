@@ -11,3 +11,19 @@ new webpack.optimize.UglifyJsPlugin({
     drop_debugger: true,
     drop_console: true
   },
+### linux授权 ###
+chmod -R 777 NpServer
+- 查看运行在java虚拟机上的程序：ps -ef|grep java
+### 熔断 ###
+当请求响应时间过长，触发了熔断器，所以导致了请求失败。
+报错：Error while sending response to client: java.io.IOException: 你的主机中的软件中止了一个已建立的连接。
+Error during filtering
+com.netflix.zuul.exception.ZuulException: Filter threw Exception
+解决方案：添加配置
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
