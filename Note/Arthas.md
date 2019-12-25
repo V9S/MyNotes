@@ -19,3 +19,5 @@
 ### 在windows下如何使用arthas ####
 - 执行as.bat [进程号]（该方法需要配置JAVA_HOME，可以直接运行）
 - 执行java -jar arthas-boot.jar
+## 下载安装 ##
+- 下载：`curl -O https://alibaba.github.io/arthas/arthas-boot.jar`
