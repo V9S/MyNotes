@@ -130,5 +130,11 @@ sdepartmentname varchar（100）
    AND b.constraint_type = 'P'
    AND A.r_constraint_name = b.constraint_name
    AND A.constraint_name = UPPER('FKACFPI7FJUU60FQUY0S54CGYP5')`
+
+
+- 生成uuid：sys_guid()
+
+- 插入其他表数据：1、insert into table_1  select * from table_2;
+				2、insert into table1 (column_name(s)) SELECT column_name(s) from table2;
     
 
