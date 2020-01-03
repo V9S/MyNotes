@@ -138,3 +138,7 @@ sdepartmentname varchar（100）
 				2、insert into table1 (column_name(s)) SELECT column_name(s) from table2;
     
 
+- oracle 一次insert多条记录` insert all 
+ into gams_jc_temp values  ('c767fa0f4c27436082a88f60c06cbdc8', 'TY2013000283')
+ into gams_jc_temp values ('accdf7280c1d46b39d24a9704789b3d2', 'TY2013000289')
+ select 1 from dual;`
