@@ -123,22 +123,32 @@ sdepartmentname varchar（100）
 
 - 解锁锁定用户：alter user np_test_new account unlock;
 
-- oracle违反唯一性约束，表定位SQL语句：`select cu.* from user_cons_columns cu, user_constraints au where cu.constraint_name = au.constraint_name and au.constraint_type = 'P' and au.constraint_name='SYS_C0054500';`
-- oracle违反完整性约束，标定位SQL语句：    `SELECT A.constraint_name, A.table_name, b.constraint_name
+- oracle违反唯一性约束，表定位SQL语句：
+`select cu.* from user_cons_columns cu, user_constraints au where cu.constraint_name = au.constraint_name and au.constraint_type = 'P' and au.constraint_name='SYS_C0054500';`
+- oracle违反完整性约束，标定位SQL语句：    
+```
+SELECT A.constraint_name, A.table_name, b.constraint_name
   FROM user_constraints A, user_constraints b
  WHERE A.constraint_type = 'R'
    AND b.constraint_type = 'P'
    AND A.r_constraint_name = b.constraint_name
-   AND A.constraint_name = UPPER('FKACFPI7FJUU60FQUY0S54CGYP5')`
+   AND A.constraint_name = UPPER('FKACFPI7FJUU60FQUY0S54CGYP5')
+```
 
 
 - 生成uuid：sys_guid()
 
-- 插入其他表数据：1、insert into table_1  select * from table_2;
-				2、insert into table1 (column_name(s)) SELECT column_name(s) from table2;
+- 插入其他表数据：
+```
+1、insert into table_1  select * from table_2;
+2、insert into table1 (column_name(s)) SELECT column_name(s) from table2;
+```
     
 
-- oracle 一次insert多条记录` insert all 
+- oracle 一次insert多条记录
+` insert all 
  into gams_jc_temp values  ('c767fa0f4c27436082a88f60c06cbdc8', 'TY2013000283')
  into gams_jc_temp values ('accdf7280c1d46b39d24a9704789b3d2', 'TY2013000289')
  select 1 from dual;`
+- 多条语句更新自身字段：
+`update gams_jc_assetclass b set b.app_template = replace(b.detail_table,'core.gams_card','app.card.card');`
