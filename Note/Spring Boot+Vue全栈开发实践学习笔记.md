@@ -9,3 +9,4 @@
 - @EnableAutoConfiguration 注解表示开启自动化配直
 - @ComponentScan 进行包扫描
 - ＠Spring BootApplication代替前两个注解，添加在**启动类**上。
+- @restController组合注解可以代替@Controller和@ResponseBody注解
