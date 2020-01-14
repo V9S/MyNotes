@@ -152,3 +152,24 @@ SELECT A.constraint_name, A.table_name, b.constraint_name
  select 1 from dual;`
 - 多条语句更新自身字段：
 `update gams_jc_assetclass b set b.app_template = replace(b.detail_table,'core.gams_card','app.card.card');`
+### LeetCode中的知识点 ###
+**题目**：编写一个 SQL 查询，满足条件：无论 person 是否有地址信息，都需要基于上述两表提供 person 的以下信息：
+- join和where的区别：`where a.PersonId = b.PersonId`是内连接，内连接只会查处两个表都存在的记录，如果Pserson表中有，而Address表中没有的记录，就没有办法查出来。外链接可以保证在其中一个没有数据的时候用null来代替它。
+```
+1、select a.FirstName, a.LastName, b.City, b.State from Person a,Address b where a.PersonId=b.PersonId
+2、select a.FirstName, a.LastName, b.City, b.State from Person a left join Address b on b.PersonId  = a.PersonId;
+```
+- 子查询代替join：
+```
+select FirstName, LastName, 
+(select City from Address where Address.PersonId = Person.PersonId ) as City,
+(select State from Address where Address.PersonId = Person.PersonId ) as State 
+from Person
+```
+- 去重提高效率：
+```
+select A.FirstName, A.LastName, B.City, B.State
+from Person A
+left join (select distinct PersonId, City, State from Address) B
+on A.PersonId=B.PersonId;
+```
