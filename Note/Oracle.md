@@ -153,7 +153,7 @@ SELECT A.constraint_name, A.table_name, b.constraint_name
 - 多条语句更新自身字段：
 `update gams_jc_assetclass b set b.app_template = replace(b.detail_table,'core.gams_card','app.card.card');`
 ### LeetCode中的知识点 ###
-**题目**：编写一个 SQL 查询，满足条件：无论 person 是否有地址信息，都需要基于上述两表提供 person 的以下信息：
+**题目1**：编写一个 SQL 查询，满足条件：无论 person 是否有地址信息，都需要基于上述两表提供 person 的以下信息：
 - join和where的区别：`where a.PersonId = b.PersonId`是内连接，内连接只会查处两个表都存在的记录，如果Pserson表中有，而Address表中没有的记录，就没有办法查出来。外链接可以保证在其中一个没有数据的时候用null来代替它。
 ```
 1、select a.FirstName, a.LastName, b.City, b.State from Person a,Address b where a.PersonId=b.PersonId
@@ -173,3 +173,17 @@ from Person A
 left join (select distinct PersonId, City, State from Address) B
 on A.PersonId=B.PersonId;
 ```
+**题目2**：如果一个国家的面积超过300万平方公里，或者人口超过2500万，那么这个国家就是大国家。
+- 初级：
+```
+select w.name,w.population,w.area from World w where w.area > '3000000' or w.population > '25000000';
+```
+- 使用union代替or
+
+```
+1、 对OR语句求并集，如查询SELECT * FROM TB1 WHERE c1="xxx" OR c2=""xxx"时，如果c1和c2列上分别有索引，可以按照c1和c2条件进行查询，再将查询结果合并（union）操作，得到最终结果
+
+2、 对AND语句求交集，如查询SELECT * FROM TB1 WHERE c1="xxx" AND c2=""xxx"时，如果c1和c2列上分别有索引，可以按照c1和c2条件进行查询，再将查询结果取交集（intersect）操作，得到最终结果
+```
+**题目3**：给定一个 Weather 表，编写一个 SQL 查询，来查找与之前（昨天的）日期相比温度更高的所有日期的 Id。
+**DATEDIFF是两个日期的天数差集（SQLServer才有，oracle中没有）**
