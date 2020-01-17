@@ -225,12 +225,40 @@ on A.PersonId=B.PersonId;
 ```
 select w.name,w.population,w.area from World w where w.area > '3000000' or w.population > '25000000';
 ```
-- 使用union代替or
+- 使用union all代替or
 
 ```
-1、 对OR语句求并集，如查询SELECT * FROM TB1 WHERE c1="xxx" OR c2=""xxx"时，如果c1和c2列上分别有索引，可以按照c1和c2条件进行查询，再将查询结果合并（union）操作，得到最终结果
+1、 对OR语句求并集，如查询SELECT * FROM TB1 WHERE c1="xxx" OR c2=""xxx"时，如果c1和c2列上分别有索引，可以按照c1和c2条件进行查询，再将查询结果合并（union all）操作，得到最终结果
 
 2、 对AND语句求交集，如查询SELECT * FROM TB1 WHERE c1="xxx" AND c2=""xxx"时，如果c1和c2列上分别有索引，可以按照c1和c2条件进行查询，再将查询结果取交集（intersect）操作，得到最终结果
 ```
 **题目3**：给定一个 Weather 表，编写一个 SQL 查询，来查找与之前（昨天的）日期相比温度更高的所有日期的 Id。
 - DATEDIFF是两个日期的天数差集（SQLServer才有，oracle中没有）
+**题目4**：编写一个 SQL 查询，查找 Person 表中所有重复的电子邮箱。
+- sql语句中GROUP BY 和 HAVING的使用 count()：
+```
+having是分组（group by）后的筛选条件，分组后的数据组内再筛选
+where则是在分组前筛选
+```
+
+```
+通过使用GROUP BY 子句，可以让SUM 和 COUNT 这些函数对属于一组的数据起作用。 
+当你指定 GROUP BY region 时， 属于同一个region（地区）的一组数据将只能返回一行值． 
+也就是说，表中所有除region（地区）外的字段，只能通过 SUM, COUNT等聚合函数运算后返回一个值． 
+
+HAVING子句可以让我们筛选成组后的各组数据． 
+WHERE子句在聚合前先筛选记录．也就是说作用在GROUP BY 子句和HAVING子句前． 
+而 HAVING子句在聚合后对组记录进行筛选。
+```
+
+```java
+-- 解法1
+select email from person group by email having count(email)>1
+
+--解法2
+select email from (select count(1) as t,email from person group by email)r  where r.t>1;
+
+--解法3
+select distinct(p1.Email) from Person p1  
+join Person  p2 on p1.Email = p2.Email AND p1.Id!=p2.Id
+```
