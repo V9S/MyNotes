@@ -166,6 +166,7 @@ SELECT A.constraint_name, A.table_name, b.constraint_name
 
 - 查询所有表，包括其他用户表:
     `select owner,table_name from all_tables;`
+
     
 
 
@@ -262,3 +263,4 @@ select email from (select count(1) as t,email from person group by email)r  wher
 select distinct(p1.Email) from Person p1  
 join Person  p2 on p1.Email = p2.Email AND p1.Id!=p2.Id
 ```
+- 取余函数：`mod(id, 2)` id除二取余
