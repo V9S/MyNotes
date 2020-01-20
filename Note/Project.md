@@ -27,3 +27,9 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 60000
+- young gc 过于频繁导致系统变慢：后端程序添加配置
+```json
+server:
+  	tomcat:
+    	backgroundProcessorDelay: 90000
+```
