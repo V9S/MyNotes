@@ -60,6 +60,12 @@
 
 
 - 解决办法：`grant unlimited tablespace to  用户名;`
+- 报错信息：
+
+    由于 ORACLE 错误 6550解决办法
+- 解决办法：
+
+`在导入语句后面加上STATISTICS=NONE 再只执行语句即可`
 ### 删除操作 ###
 - 删除用户
 
