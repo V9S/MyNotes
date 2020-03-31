@@ -48,6 +48,18 @@
     `expdp xinxiaoyong/123456@127.0.0.1:1521 schemas=xinxiaoyong dumpfile=test.dmplogfile=test.log directory=testdata1;`
 （schemas：导出操作的用户名;dumpfile：导出的文件;logfile:导出的日志文件,可以不写；directory:创建的文件夹名称;remap_schema=源数据库用户名:目标数据库用户名,二者不同时必写，相同可以省略;）
 	
+### 数据导入报错 ###
+- 报错信息：
+    ORA-39006: 内部错误
+    
+    ORA-39068: 在 PROCESS_ORDER=-4 的行中主表数据无效
+    
+    ORA-01950: 对表空间 'USERS' 无权限
+    
+    ORA-39097: 数据泵作业出现意外的错误 -1950
+
+
+- 解决办法：`grant unlimited tablespace to  用户名;`
 ### 删除操作 ###
 - 删除用户
 
