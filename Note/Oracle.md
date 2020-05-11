@@ -13,7 +13,7 @@
 
     imp np_test/np_test@orcl file=E:\test_np.DMP full=y ignore=y;
 #### 数据泵导入（数据库较大时） ####
- 
+
 - 1、重复 普通导入的前三步
 - 2、创建文件夹
 
@@ -70,9 +70,23 @@
 - 删除用户
 
     drop user np_test cascade;
+
 - 删除表空间
 
     drop tablespace np_test including contents and datafiles cascade constraint;
+
+- 根据用户查询表空间
+
+  select default_tablespace from dba_users where username='USERNAME'
+
+  ### 查询操作 ###
+  - 根据用户查询表空间
+
+  select default_tablespace from dba_users where username='USERNAME'
+
+    
+  
+    
 ## 错误 ##
 - ORA-39001: 参数值无效
   ORA-39000: 转储文件说明错误
@@ -128,7 +142,7 @@ sdepartmentname varchar（100）
 
 - 关键词 DISTINCT 用于返回唯一不同的值。  
 	`SELECT DISTINCT Company FROM Orders`
-    
+  
 
 
 
@@ -168,7 +182,7 @@ SELECT A.constraint_name, A.table_name, b.constraint_name
 1、insert into table_1  select * from table_2;
 2、insert into table1 (column_name(s)) SELECT column_name(s) from table2;
 ```
-    
+
 
 - oracle 一次insert多条记录
 ` insert all 
