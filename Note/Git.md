@@ -61,3 +61,4 @@ git add 后可以接要跟踪的文件或目录的路径。如果是目录的话
 输入git log，我们可以看到最近的3次提交，最近一次提交是test3，最早的一次是test1，其中一大串黄色的字母是commit id（版本号） 
 
 - git clone制定分支代码：`git clone -b <分支名> <下载地址>`
+- 执行命令： `git config --global core.quotepath false` GitBash设置zh_CN UTF-8 后执行命令刷新控制台，可显示中文
