@@ -21,7 +21,7 @@
     	ObjectOutputStream oos= null;
     	oos.writeObject(this);
     	oos.flush();
-
+    
     ByteArrayInputStream bis=new ByteArrayInputStream(bos.toByteArray());//将对象从流中取出
     	ObjectInputStream ois=new ObjectInputStream(bis);
     	return (Person)ois.readObject();
@@ -34,5 +34,12 @@
 
 
 
+#### 自动拆箱与自动装箱
 
+自动装箱是通过包装类的valueOf（）实现的
 
+自动拆箱是通过包装类对象的xxxValue（）实现的
+
+源码：Integer integer=1; //装箱        int i=integer; //拆箱
+
+反编译：Integer integer=Integer.valueOf(1);         int i=integer.intValue(); 
