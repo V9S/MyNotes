@@ -14,3 +14,17 @@
 >     <name>aliyun maven</name>
 >    <url>http://maven.aliyun.com/nexus/content/groups/public</url>
 > </mirror>
+
+#### maven项目maven Dependencies下的jar包有的颜色变灰色了
+
+pom依赖
+
+```pom
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-test</artifactId>
+		<scope>test</scope>
+	</dependency>
+```
+由于<scope>标签，test表示只能在src下的test文件夹下面才可
+如果在main 文件夹下使用	去掉scope 即可
