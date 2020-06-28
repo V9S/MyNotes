@@ -200,12 +200,18 @@ SELECT A.constraint_name, A.table_name, b.constraint_name
     `select owner,table_name from all_tables;`
 
 - oracle中使用时间时，需要使用to_date()函数进行格式化：
-    
+  
+
 `select * from gams_bill_annex where createdate < to_date('2020-06-18 00:00:00','yyyy-mm-dd HH24:mi:ss');`
     
-    
 
+- 查询数据库中所有表： 
 
+`select a.* from user_tables a ;`
+
+- 查询表中字段所又名：
+
+`select * from user_tab_cols where table_name = 'GAMS_BILL_ANNEX';`
 
 
 
