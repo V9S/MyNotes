@@ -9,4 +9,11 @@ public class BreakPointTest {
         }
     }
 
+    public void fun() {
+        int n = 200;
+        for (int m = 0; m <= n; m++) {
+            System.out.println(m);
+        }
+    }
+
 }
