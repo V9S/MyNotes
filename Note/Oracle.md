@@ -1,168 +1,170 @@
-### 数据库导入 ###
-#### 普通导入 ####
-- 1、创建表空间
-
-    CREATE TABLESPACE np_test LOGGING DATAFILE 'E:\app\ZLM\oradata\orcl\np_test.DBF' size 1000m autoextend on next 10m maxsize unlimited;
-- 2、创建用户
-
-    CREATE USER np_test IDENTIFIED BY np_test DEFAULT TABLESPACE np_test;
-- 3、授权
-
-    grant dba,connect,resource to np_test;
-- 4、导入（在cmd下）
-
-    imp np_test/np_test@orcl file=E:\test_np.DMP full=y ignore=y;
-#### 数据泵导入（数据库较大时） ####
-
-- 1、重复 普通导入的前三步
-- 2、创建文件夹
-
-    Create or replace directory DMP_DIR as 'D:\oracle_beifen';
-- 3、给用户授权文件夹权限
-
-    Grant read,write on directory DMP_DIR to np_test;
-- 4、给用户授权导入导出权限
-
-    grant exp_full_database,imp_full_database to np_test;
-- 5、导入（在cmd下）
-
-    impdp np_test/np_test@orcl directory=DMP_DIR dumpfile=NP_TEST.DMP  logfile=np_test.log;
-### 数据库导出 ###
-#### 普通导出 ####
-- 1、完全导出：
-
-	`exp xinxiaoyong/123456@127.0.0.1:1521/orcl file="e:\temp.dmp" full = y;`
-- 2、部分表的导入导出：
-
-	`exp(imp)  username/password@SERVICENAME:1521 file="e：\temp.dmp" tabels=(table1,table2,table3,...);`
-- 3、表空间tablespaces导入导出（一个数据库实例可以有N个表空间(tablespace)，一个表空间下可以有N张表(table)）：
-
-	`exp(imp)  username/password@SERVICENAME:1521 file="e:\temp.dmp" tablespaces=(tablespace1,tablespace2,tablespace3,...);`
-- 4、用户名username对象导入导出：
-
-	`exp(imp) username/password@SERVICENAME:1521 file="e:\temp.dmp" owner(username1,username2,username3);`
-#### 数据泵导出 ####
-- 1、创建目录
-- 2、导出数据库
-
-    `expdp xinxiaoyong/123456@127.0.0.1:1521 schemas=xinxiaoyong dumpfile=test.dmplogfile=test.log directory=testdata1;`
-（schemas：导出操作的用户名;dumpfile：导出的文件;logfile:导出的日志文件,可以不写；directory:创建的文件夹名称;remap_schema=源数据库用户名:目标数据库用户名,二者不同时必写，相同可以省略;）
-	
-### 数据导入报错 ###
-- 报错信息：
-    ORA-39006: 内部错误
-    
-    ORA-39068: 在 PROCESS_ORDER=-4 的行中主表数据无效
-    
-    ORA-01950: 对表空间 'USERS' 无权限
-    
-    ORA-39097: 数据泵作业出现意外的错误 -1950
 
 
-- 解决办法：`grant unlimited tablespace to  用户名;`
-- 报错信息：
+## 数据库导入
 
-    由于 ORACLE 错误 6550解决办法
-- 解决办法：
+### 普通导入
 
-`在导入语句后面加上STATISTICS=NONE 再只执行语句即可`
-### 删除操作 ###
-- 删除用户
+1. 创建表空间
 
-    drop user np_test cascade;
+   ```
+   CREATE TABLESPACE np_test LOGGING DATAFILE 'E:\app\ZLM\oradata\orcl\np_test.DBF' size 1000m autoextend on next 10m maxsize unlimited;
+   ```
 
-- 删除表空间
+2. 创建用户
 
-    drop tablespace np_test including contents and datafiles cascade constraint;
+   ```
+   CREATE USER np_test IDENTIFIED BY np_test DEFAULT TABLESPACE np_test;
+   ```
 
-- 根据用户查询表空间
+3. 授权
 
-  select default_tablespace from dba_users where username='USERNAME'
+   ```
+   grant dba,connect,resource to np_test;
+   ```
 
-  ### 查询操作 ###
-  - 根据用户查询表空间
+4. 导入（在cmd下）
 
-  select default_tablespace from dba_users where username='USERNAME'
+   ```
+   1. imp np_test/np_test@orcl file=E:\test_np.DMP full=y ignore=y;
+   ```
+   
+### 数据泵导入（数据库较大时）
 
-    
-  
-    
-## 错误 ##
-- ORA-39001: 参数值无效
-  ORA-39000: 转储文件说明错误
-  ORA-39143: 转储文件 "E:\a.dmp" 可能是原始的导出转储文件
-> 问题原因：dmp文件是使用exp命令导出的，故应该用imp命令导出，而不能用impdp命令。
+1. 重复 普通导入的前三步
 
-### 删除100行以后的数据 ###
+2. 创建文件夹
 
-- 查询：select * 
-- 
--  (select rownum rw,ID  from np_user order by ID desc ) where rw>100 ;
+   ```
+   Create or replace directory DMP_DIR as 'D:\oracle_beifen';
+   ```
 
-- 删除：delete from np_user where ID in （select ID from (select rownum rw, ID from np_user order by ID desc ) where rw>100 ）;
+3. 给用户授权文件夹权限
 
-### 创建新字段 ###
-- 默认非空：alter table np_user add test varchar(20 char)  Default 0 NOT NULL;
+   ```
+   Grant read,write on directory DMP_DIR to np_test;
+   ```
 
+4. 给用户授权导入导出权限
 
+   ```
+   grant exp_full_database,imp_full_database to np_test;
+   ```
 
-- 默认为空：alter table np_user add test varchar(20 char)  NULL;
-### 删除字段 ###
+5. 导入（在cmd下）
 
-ALTER TABLE np_user DROP COLUMN test; 
+   ```
+   impdp np_test/np_test@orcl directory=DMP_DIR dumpfile=NP_TEST.DMP  logfile=np_test.log;
+   ```
 
-### 字段间数据导入 ###
-- 同表字段间数据导入：update np_user set test = sex;
-- 异表间字段数据导入：update np_user t set test = (select sex  from np_user_temp b where t.id=b.id  );
-- 不同数据库之间：update  npzc_xgd.gams_card t  set (t.cunfdd_old,t.shiybm_old,t.shiyr_old)=(select s.存放地名称,s.领用单位名,s.人员编号  from zcgl_jy.s1 s where t.billcode=s.仪器编号 )
-### 根据已有表创建新表 ###
-- create table np_user_temp as select * from np_user;
-- 创建新表：CREATE TABLE contrast_xgd(
-departmentid varchar(100),
-departmentname varchar（100）,
-sdepartmentid  varchar（100）,
-sdepartmentname varchar（100）
-)
+## 数据库导出 ##
 
-- 将表的只读模式改为读写模式，可以在plsql中手动添加数据
-### 删除表 ###
-- 删除表：drop table contrast_xgd
-- 强制删除表（带有外键）：drop table gams_jc_department cascade constraints;
-- 删除表中数据：delete from tablename
-### 收回dba权限 ###
-- revoke dba from npzc_xgd
-### 当前用户被授予的角色 ###
--  select * from user_role_privs;
-### 查询以0结尾的字段 ###
-- select telephone from  np_user where telephone like  '%0'
-- 查询包含5522的字段：select telephone from  np_user where telephone like  '%5522%'
-- 使用plsql导出表，不同表空间、用户名无法导入
+### 普通导出 ###
+1. 完全导出
 
+   ```
+   exp xinxiaoyong/123456@127.0.0.1:1521/orcl file="e:\temp.dmp" full = y;
+   ```
 
+2. 部分表的导入导出：
 
-- 关键词 DISTINCT 用于返回唯一不同的值。  
-	`SELECT DISTINCT Company FROM Orders`
-  
+   ```
+   exp(imp)  username/password@SERVICENAME:1521 file="e：\temp.dmp" tabels=(table1,table2,table3,...);
+   ```
 
+3. 表空间tablespaces导入导出（一个数据库实例可以有N个表空间(tablespace)，一个表空间下可以有N张表(table)）
 
+   ```
+   exp(imp)  username/password@SERVICENAME:1521 file="e:\temp.dmp" tablespaces=(tablespace1,tablespace2,tablespace3,...);
+   ```
 
-- 查询登录次数:
-`SELECT resource_name,resource_type,limit FROM dba_profiles WHERE profile='DEFAULT';`
+4. 用户名username对象导入导出
 
+   ```
+   exp(imp) username/password@SERVICENAME:1521 file="e:\temp.dmp" owner(username1,username2,username3);
+   ```
 
+### 数据泵导出 ###
 
-- 设置登录次数无限次：
-`alter profile default limit FAILED_LOGIN_ATTEMPTS unlimited;`
+1. 创建目录
 
+2. 导出数据库
 
+   ```
+   expdp xinxiaoyong/123456@127.0.0.1:1521 schemas=xinxiaoyong dumpfile=test.dmplogfile=test.log directory=testdata1;
+   （schemas：导出操作的用户名;dumpfile：导出的文件;logfile:导出的日志文件,可以不写；directory:创建的文件夹名称;remap_schema=源数据库用户名:目标数据库用户名,二者不同时必写，相同可以省略;）
+   ```
 
-- 解锁锁定用户：
-    `alter user np_test_new account unlock;`
+## select 
 
-- oracle违反唯一性约束，表定位SQL语句：
-`select cu.* from user_cons_columns cu, user_constraints au where cu.constraint_name = au.constraint_name and au.constraint_type = 'P' and au.constraint_name='SYS_C0054500';`
-- oracle违反完整性约束，标定位SQL语句：    
+#### 可以查询出所有的用户表:
+
+```sql
+select * from user_tables
 ```
+
+#### 查询所有表，包括其他用户表:
+
+```sql
+select owner,table_name from all_tables;
+```
+
+#### oracle中使用时间时，需要使用to_date()函数进行格式化：
+
+```sql
+select * from gams_bill_annex where createdate < to_date('2020-06-18 00:00:00','yyyy-mm-dd HH24:mi:ss');
+```
+
+#### 查询数据库中所有表： 
+
+```sql
+select a.* from user_tables a ;
+```
+
+#### 查询表中字段所又名：
+
+```sql
+select * from user_tab_cols where table_name = 'GAMS_BILL_ANNEX';
+```
+
+#### 根据用户查询表空间
+
+```
+select default_tablespace from dba_users where username='USERNAME'
+```
+
+#### 查询当前用户被授予的角色 ####
+
+```
+select * from user_role_privs;
+```
+
+#### 查询以0结尾的字段 ####
+
+```
+select telephone from  np_user where telephone like  '%0'
+```
+
+#### 查询包含5522的字段
+
+```
+select telephone from  np_user where telephone like  '%5522%'
+```
+
+#### 关键词 DISTINCT 用于返回唯一不同的值。 
+
+```
+SELECT DISTINCT Company FROM Orders
+```
+
+#### 查询登录次数
+
+```
+SELECT resource_name,resource_type,limit FROM dba_profiles WHERE profile='DEFAULT';
+```
+
+#### oracle违反完整性约束，标定位SQL语句
+
+```sql
 SELECT A.constraint_name, A.table_name, b.constraint_name
   FROM user_constraints A, user_constraints b
  WHERE A.constraint_type = 'R'
@@ -172,72 +174,210 @@ SELECT A.constraint_name, A.table_name, b.constraint_name
 ```
 
 
-- 生成uuid：
-`sys_guid()`
-- 创建索引：
-`create index index_name on table (column_name);`
 
-- 插入其他表数据：
+## update
+
+#### case when then end 使用
+
+```sql
+update GAMS_JC_DEPARTMENT a
+set a.DEPARTMENTLEVEL = (case
+                             when length(a.PARENTS) = 37 then 'DF13D835A6644935B66D085B5BF3F3E3'
+                             when length(a.PARENTS) = 74 then 'B3DE15348C3D47178E98FA876EE19C5F'
+                             when length(a.PARENTS) = 111 then '480ECA83A0A842789D3C607A47F136B2'
+                             when length(a.PARENTS) = 148 then '135D32ABA6D64A02BE1A3D393C2D27CE'
+                             when length(a.PARENTS) = 183 then 'C76CCA44D29748E194B89614A112ECE5' end);
 ```
+
+#### 多条语句更新自身字段
+
+```sql
+update gams_jc_assetclass b set b.app_template = replace(b.detail_table,'core.gams_card','app.card.card');
+```
+
+#### 字段间数据更新 ####
+
+1. ##### 同表字段间数据导入
+
+   ```
+   update np_user set test = sex;
+   ```
+
+2. 异表间字段数据导入
+
+   ```
+   update np_user t set test = (select sex  from np_user_temp b where t.id=b.id );
+   ```
+
+3. 不同数据库之间
+
+   ```
+   update  npzc_xgd.gams_card t  set (t.cunfdd_old,t.shiybm_old,t.shiyr_old)=(select s.存放地名称,s.领用单位名,s.人员编号  from zcgl_jy.s1 s where t.billcode=s.仪器编号 )
+   ```
+
+## insert
+
+#### oracle 一次insert多条记录
+
+```sql
+insert all 
+ into gams_jc_temp values  ('c767fa0f4c27436082a88f60c06cbdc8', 'TY2013000283')
+ into gams_jc_temp values ('accdf7280c1d46b39d24a9704789b3d2', 'TY2013000289')
+ select 1 from dual;
+```
+
+#### 插入其他表数据
+
+```sql
 1、insert into table_1  select * from table_2;
 2、insert into table1 (column_name(s)) SELECT column_name(s) from table2;
 ```
 
 
-- oracle 一次insert多条记录
-` insert all 
- into gams_jc_temp values  ('c767fa0f4c27436082a88f60c06cbdc8', 'TY2013000283')
- into gams_jc_temp values ('accdf7280c1d46b39d24a9704789b3d2', 'TY2013000289')
- select 1 from dual;`
-- 多条语句更新自身字段：
-`update gams_jc_assetclass b set b.app_template = replace(b.detail_table,'core.gams_card','app.card.card');`
 
-- 可以查询出所有的用户表:
-`select * from user_tables`
+## delete
+
+#### 删除用户
+
+```
+drop user np_test cascade;
+```
+
+#### 删除表空间
+
+```
+drop tablespace np_test including contents and datafiles cascade constraint;
+```
+
+#### 删除表：
+
+```
+drop table contrast_xgd
+```
+
+#### 强制删除表（带有外键）
+
+```
+drop table gams_jc_department cascade constraints;
+```
+
+#### 删除表中数据
+
+```
+delete from tablename
+```
+
+#### 删除字段 ####
+
+```
+ALTER TABLE np_user DROP COLUMN test; 
+```
+
+#### 删除100行以后的数据 ####
+
+```
+delete from np_user where ID in （select ID from (select rownum rw, ID from np_user order by ID desc ) where rw>100 ）;
+```
+
+## others
+
+#### 生成uuid
+
+```
+sys_guid()
+```
+
+#### 创建索引
+
+```
+create index index_name on table (column_name);
+```
+
+#### 创建新字段 ####
+
+```
+默认非空：alter table np_user add test varchar(20 char)  Default 0 NOT NULL;
+```
+
+```
+默认为空：alter table np_user add test varchar(20 char)  NULL;
+```
+
+#### 收回dba权限 ####
+
+```
+revoke dba from npzc_xgd
+```
+
+#### 根据已有表创建新表 ####
+
+```
+create table np_user_temp as select * from np_user;
+```
+
+#### 创建新表
+
+```
+CREATE TABLE contrast_xgd(
+departmentid varchar(100),
+departmentname varchar（100）,
+sdepartmentid  varchar（100）,
+sdepartmentname varchar（100）
+)
+```
+
+> 将表的只读模式改为读写模式，可以在plsql中手动添加数据
+
+#### 使用plsql导出表，不同表空间、用户名无法导入
+
+#### 设置登录次数无限次
+
+```
+alter profile default limit FAILED_LOGIN_ATTEMPTS unlimited;
+```
+
+#### 解锁锁定用户
+
+```
+alter user np_test_new account unlock;
+```
+
+#### oracle违反唯一性约束，表定位SQL语句
+
+```
+select cu.* from user_cons_columns cu, user_constraints au where cu.constraint_name = au.constraint_name and au.constraint_type = 'P' and au.constraint_name='SYS_C0054500';
+```
 
 
-- 查询所有表，包括其他用户表:
-    `select owner,table_name from all_tables;`
 
-- oracle中使用时间时，需要使用to_date()函数进行格式化：
-  
+## 报错
 
-`select * from gams_bill_annex where createdate < to_date('2020-06-18 00:00:00','yyyy-mm-dd HH24:mi:ss');`
-    
+- 报错信息
 
-- 查询数据库中所有表： 
+  ORA-39001: 参数值无效
+  ORA-39000: 转储文件说明错误
+  ORA-39143: 转储文件 "E:\a.dmp" 可能是原始的导出转储文件
 
-`select a.* from user_tables a ;`
+> 问题原因：dmp文件是使用exp命令导出的，故应该用imp命令导出，而不能用impdp命令。
 
-- 查询表中字段所又名：
+- 报错信息：
+  ORA-39006: 内部错误
 
-`select * from user_tab_cols where table_name = 'GAMS_BILL_ANNEX';`
+  ORA-39068: 在 PROCESS_ORDER=-4 的行中主表数据无效
 
+  ORA-01950: 对表空间 'USERS' 无权限
 
+  ORA-39097: 数据泵作业出现意外的错误 -1950
 
-
-
-
-
+> 解决办法：grant unlimited tablespace to  用户名;
 
 
+- 报错信息：
 
+  由于 ORACLE 错误 6550解决办法
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+> 解决办法：在导入语句后面加上STATISTICS=NONE 再只执行语句即可
+>
 
 
 
