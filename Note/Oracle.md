@@ -275,7 +275,7 @@ ALTER TABLE np_user DROP COLUMN test;
 
 #### 删除100行以后的数据 ####
 
-```
+```sql
 delete from np_user where ID in （select ID from (select rownum rw, ID from np_user order by ID desc ) where rw>100 ）;
 ```
 
@@ -382,7 +382,7 @@ select cu.* from user_cons_columns cu, user_constraints au where cu.constraint_n
 
 
 
-### LeetCode中的知识点 ###
+## LeetCode中的知识点 ##
 **题目1**：编写一个 SQL 查询，满足条件：无论 person 是否有地址信息，都需要基于上述两表提供 person 的以下信息：
 - join和where的区别：`where a.PersonId = b.PersonId`是内连接，内连接只会查处两个表都存在的记录，如果Pserson表中有，而Address表中没有的记录，就没有办法查出来。外链接可以保证在其中一个没有数据的时候用null来代替它。
 ```
