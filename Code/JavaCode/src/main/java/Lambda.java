@@ -46,6 +46,7 @@ public class Lambda {
                  System.out.println("list.forEach:"+t);
             }
         });
+        list.stream();
         System.out.println(list);
     }
 

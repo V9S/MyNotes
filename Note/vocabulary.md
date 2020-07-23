@@ -52,4 +52,6 @@ initialized		初始化
 
 subsequently  	后来，随后
 
+Obtain			获得
+
 type hierarchy	类型层次结构
