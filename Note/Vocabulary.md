@@ -55,3 +55,9 @@ subsequently  	后来，随后
 Obtain			获得
 
 type hierarchy	类型层次结构
+
+represents 		代表，表示
+
+areimplemented		实现
+
+constant			常量
