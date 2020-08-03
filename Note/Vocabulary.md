@@ -61,3 +61,6 @@ represents 		代表，表示
 areimplemented		实现
 
 constant			常量
+
+precise 				精确地
+
