@@ -64,3 +64,4 @@ constant			常量
 
 precise 				精确地
 
+advanced 			高级的
