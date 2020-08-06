@@ -26,9 +26,30 @@
   
   ```
 
+  ```
+  find . -name "Portainer"
+  ```
+
+  
+
   ### Docker
 
   显示docker中运行程序：`docker ps`
 
   进入mysql bash ：`docker  exec -it mysql bash`
 
+  ### Oracle
+
+  ```
+  进入oracle数据库终端：
+  su - oracle
+  cd /u01/app/oracle/product/11.2.0/db_1/bin
+  ./sqlplus /nolog
+  
+  连接oracle用户：
+  conn  jlgsnp_new/jlgsnp_new
+  
+  
+  ```
+
+  
