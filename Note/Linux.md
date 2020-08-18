@@ -52,4 +52,4 @@
   
   ```
 
-  
+  查看防火墙：`systemctl status firewalld`
