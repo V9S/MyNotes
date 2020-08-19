@@ -61,4 +61,27 @@ git add 后可以接要跟踪的文件或目录的路径。如果是目录的话
 输入git log，我们可以看到最近的3次提交，最近一次提交是test3，最早的一次是test1，其中一大串黄色的字母是commit id（版本号） 
 
 - git clone制定分支代码：`git clone -b <分支名> <下载地址>`
+
 - 执行命令： `git config --global core.quotepath false` GitBash设置zh_CN UTF-8 后执行命令刷新控制台，可显示中文
+
+- 使用git pull拉取代码的时候，无法拉取最新代码，报"unable to update local ref"错误：
+
+  1、切换到之前clone代码目录下，执行命令
+
+  ```
+  git gc --prune=now或者git gc 
+  ```
+
+  2、再执行命令
+
+  ```
+  git pull
+  ```
+
+  3、有问题再执行后再做pull操作 
+
+  ```
+  git remote prune origin
+  ```
+
+  
