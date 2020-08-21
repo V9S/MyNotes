@@ -33,3 +33,12 @@ server:
   	tomcat:
     	backgroundProcessorDelay: 90000
 ```
+
+迁移数据重新迁移后要执行语句
+
+```
+update gams_unitdatatrans_detail l set l.isfinishtrans=0;
+
+SELECT l.ISFINISHTRANS FROM gams_unitdatatrans_detail l;
+```
+
