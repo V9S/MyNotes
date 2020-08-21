@@ -446,3 +446,22 @@ select distinct(p1.Email) from Person p1
 join Person  p2 on p1.Email = p2.Email AND p1.Id!=p2.Id
 ```
 - 取余函数：`mod(id, 2)` id除二取余
+
+  ### 从linux导出oracle
+
+  ```
+  grant read,write on directory data_dir to HKJzcgl;
+  
+  expdp HKJzcgl/HKJzcgl@orcl tablespace=HKJzcgl dumpfile=HKJzcgl.dmp directory=data_dir logfile=HKJzcgl.log;
+  
+  在服务器上创建真实的目录；
+  expdp HKJzcgl/HKJzcgl@orcl dumpfile=HKJzcgl.dmp directory=data_dir full=y logfile=HKJzcgl.log;
+  创建逻辑目录；
+  mkdir  dmpback
+  查看管理员目录，检查是否存在；
+  select * from dba_directories;
+  用sys管理员给你的指定用户赋予在该目录的操作权限。
+  grant read,write on directory data_dir to HKJzcgl;
+  ```
+
+  
