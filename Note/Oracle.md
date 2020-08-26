@@ -279,6 +279,14 @@ ALTER TABLE np_user DROP COLUMN test;
 delete from np_user where ID in （select ID from (select rownum rw, ID from np_user order by ID desc ) where rw>100 ）;
 ```
 
+#### 删除数据库中所有表
+
+```
+SELECT 'DROP TABLE',table_name,'cascade constraints;' FROM USER_TABLES ;
+```
+
+
+
 ## others
 
 #### 生成uuid
