@@ -356,6 +356,41 @@ alter user np_test_new account unlock;
 select cu.* from user_cons_columns cu, user_constraints au where cu.constraint_name = au.constraint_name and au.constraint_type = 'P' and au.constraint_name='SYS_C0054500';
 ```
 
+#### Oracle:关闭开启所有外键
+
+请使用sqlplus或者plsql的命令窗口执行语句，如果是plsql，请使用命令窗口，在末尾敲入/，然后回车即可。
+1.关闭所有外键
+
+```
+SET SERVEROUTPUT ON SIZE 500000
+BEGIN
+for c in (select 'ALTER TABLE '||TABLE_NAME||' DISABLE CONSTRAINT '||constraint_name||' ' as v_sql from user_constraints where CONSTRAINT_TYPE='R' or CONSTRAINT_TYPE='C') loop
+DBMS_OUTPUT.PUT_LINE(C.V_SQL);
+begin
+EXECUTE IMMEDIATE c.v_sql;
+exception when others then
+dbms_output.put_line(sqlerrm);
+end;
+end loop;
+end;
+```
+
+2.开启所有外键
+
+```
+SET SERVEROUTPUT ON SIZE 500000
+begin
+for c in (select 'ALTER TABLE '||TABLE_NAME||' ENABLE CONSTRAINT '||constraint_name||' ' as v_sql from user_constraints where CONSTRAINT_TYPE='R' or CONSTRAINT_TYPE='C') loop
+DBMS_OUTPUT.PUT_LINE(C.V_SQL);
+begin
+EXECUTE IMMEDIATE c.v_sql;
+exception when others then
+dbms_output.put_line(sqlerrm);
+end;
+end loop;
+end;
+```
+
 
 
 ## 报错
