@@ -288,4 +288,46 @@
   @oinstall soft stack 10240
   ```
 
+  ### 安装jdk
   
+  一、登录虚拟机进入终端切换到root用户，输入：su 接着输入密码 再输入：cd … 回到root用户
+  
+  二、查看Linux系统是否有自带的jdk：
+  
+  ```
+  1、输入：java -version
+  2、发现有输入：rpm -qa | grep java 检测jdk的安装包，（注意：rpm命令符没有时记得下载一个输入：apt-get install +命令名称）
+  3、接着进行一个个删除包，输入：rpm -e --nodeps +包名
+  4、最后再次：rpm -qa | grep java检查是否删除完即可（此步由于之前已经卸载，所以没有截图）
+  ```
+  
+  三、在/usr/local目录下新建文件夹
+  
+  ```
+  mkdir java
+  ```
+  
+  四、修改文件夹权限
+  
+  ```
+  chmod 777 java
+  ```
+  
+  五、将jdk压缩包解压
+  
+  ```
+  tar -zxvf + 文件名
+  ```
+  
+  六、配置环境变量
+  
+  ```
+  vim /etc/profile
+  添加
+  export JAVA_HOME=/usr/local/java/jdk1.8.0_261
+  export PATH=$JAVA_HOME/bin:$PATH
+  export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+  ```
+  
+  
+
