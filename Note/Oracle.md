@@ -282,7 +282,7 @@ delete from np_user where ID in （select ID from (select rownum rw, ID from np_
 #### 删除数据库中所有表
 
 ```
-SELECT 'DROP TABLE',table_name,'cascade constraints;' FROM USER_TABLES ;
+SELECT 'drop table '||table_name||' cascade constraints;' FROM USER_TABLES;
 ```
 
 
