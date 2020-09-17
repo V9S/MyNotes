@@ -36,6 +36,7 @@ wget https://arthas.aliyun.com/arthas-demo.jar
 
 ```
 java -jar arthas-boot.jar 
+如果出现端口占用，可以指定pid ： java -jar arthas-boot.jar  777
 ```
 
 ![image-20200907121246315](C:\Users\ZLM\AppData\Roaming\Typora\typora-user-images\image-20200907121246315.png)
