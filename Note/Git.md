@@ -84,4 +84,14 @@ git add 后可以接要跟踪的文件或目录的路径。如果是目录的话
   git remote prune origin
   ```
 
+  ### 删除保存在本地的git账户
   
+  ```
+  git credential-manager uninstall
+  ```
+  
+  ### 缓存账户
+  
+  ```
+  git config --global credential.helper wincred
+  ```
