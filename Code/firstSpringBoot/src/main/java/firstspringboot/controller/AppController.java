@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AppController {
 
-    private int[] a;
     
 	@GetMapping("/hello")
 	public String hello() {
+	    System.out.println("1111111111111");
 		return "Hello SpringBoot";
 	}
 }
