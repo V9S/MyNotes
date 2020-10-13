@@ -307,7 +307,7 @@ create index index_name on table (column_name);
 默认非空：alter table np_user add test varchar(20 char)  Default 0 NOT NULL;
 ```
 
-```
+```sql
 默认为空：alter table np_user add test varchar(20 char)  NULL;
 ```
 
