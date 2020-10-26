@@ -52,3 +52,8 @@ SELECT l.ISFINISHTRANS FROM gams_unitdatatrans_detail l;
 
 ### Could not find process e4fffce1-1ecd-4d1b-a6b8-db7350576f84 when restoring process instance 46
 
+​	
+
+processinstanceinfo表的id保持和processinstancelog表的id相同
+
+alter table workiteminfo processinstanceinfo=6001；
