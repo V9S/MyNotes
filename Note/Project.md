@@ -57,3 +57,10 @@ SELECT l.ISFINISHTRANS FROM gams_unitdatatrans_detail l;
 processinstanceinfo表的id保持和processinstancelog表的id相同
 
 alter table workiteminfo processinstanceinfo=6001；
+
+
+
+#### 数据迁移测试连接成功，不显示迁移范围
+
+drop table gams_datatrans_detail;
+drop table gams_datatrans;
