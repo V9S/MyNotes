@@ -51,25 +51,35 @@ drop table gams_datatrans;
 
 ### 工作流问题：
 
-#### 问题：提交走的流程定义是最新的（uuid），审批、取回走的流程定义是元数据的（英文字母）
+#### 问题：
 
+#### 1、提交走的流程定义是最新的（uuid），审批、取回走的流程定义是元数据的（英文字母）
+
+```
 解决方法：是因为workiteminfo表的workitemid比较小，比如到2000，但是nodeinstancelog表里的workItemId可能已经到6000了，所以nodeinstancelog表就不会生成新纪录，会对应之前生成的2000，所以就对应错了。alter table workiteminfo AUTO_INCREMENT=6001;用这个语句让他从6001开始生成就可以了。
+```
 
 
 
-### 1、Could not find process e4fffce1-1ecd-4d1b-a6b8-db7350576f84 when restoring process instance 46
+### 2、Could not find process e4fffce1-1ecd-4d1b-a6b8-db7350576f84 when restoring process instance 46
 
-
-
+```
 processinstanceinfo表的id保持和processinstancelog表的id相同
 
-alter table workiteminfo processinstanceinfo=6001；
+alter table processinstanceinfo AUTO_INCREMENT=6001；
+```
 
 ​	
 
 
 
-#### 2、No deployments available for com.beecode:7c9e03f3-b85a-4587-889f-f45ef5afb708:15:flow:ksession01
+#### 3、No deployments available for com.beecode:7c9e03f3-b85a-4587-889f-f45ef5afb708:15:flow:ksession01
+
+
+
+#### 4、可以提交，审批时报错：Error occurs while completing workitem(3411), Nest Exception: java.lang.RuntimeException: Could not find process eee2fa8b-19f8-4c39-8840-b1a0cc8db558 when restoring process instance 1076 java.lang.RuntimeException: Could not find process eee2fa8b-19f8-4c39-8840-b1a0cc8db558 when restoring process instance 1076
+
+
 
 
 
