@@ -406,6 +406,12 @@ begin
 end;
 ```
 
+#### 修改sys密码
+
+```
+sys登录后,执行：“alter user sys identified by password”，其中password为修改后的密码
+```
+
 
 
 ## 报错
