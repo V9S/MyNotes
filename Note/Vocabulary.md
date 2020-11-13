@@ -67,3 +67,15 @@ precise 				精确地
 advanced 			高级的
 
 deploy 				部署
+
+syntax					语法
+
+Specify				指定的
+
+periodically		定期的
+
+Abort 					终止
+
+stuck					卡住
+
+timestamps 		时间戳
