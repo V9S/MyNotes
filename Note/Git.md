@@ -95,3 +95,12 @@ git add 后可以接要跟踪的文件或目录的路径。如果是目录的话
   ```
   git config --global credential.helper wincred
   ```
+  
+  ### 每次都无法克隆代码
+  
+  ```
+  git config –global http.emptyAuth true
+  这条语句导致，改成false
+  ```
+  
+  
