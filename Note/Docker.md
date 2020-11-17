@@ -60,3 +60,15 @@ vi /etc/docker/daemon.json
 service docker restart
 ```
 
+#### docker ps 如何查看完整command
+
+```
+docker ps --no-trunc
+```
+
+#### docker 查看详细配置信息
+
+```
+docker inspect <CONTAINER-NAME> OR <CONTAINER-ID>
+```
+

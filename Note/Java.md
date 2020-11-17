@@ -43,3 +43,28 @@
 源码：Integer integer=1; //装箱        int i=integer; //拆箱
 
 反编译：Integer integer=Integer.valueOf(1);         int i=integer.intValue(); 
+
+#### jvm
+
+```
+-server: 一定要作为第一个参数，在多个CPU时性能佳 
+-Xms：java Heap初始大小。 默认是物理内存的1/64。
+-Xmx：java heap最大值。建议均设为物理内存的一半。不可超过物理内存。 
+-XX:PermSize:设定内存的永久保存区初始大小，缺省值为64M。
+-XX:MaxPermSize:设定内存的永久保存区最大 大小，缺省值为64M。
+-XX:SurvivorRatio=2  :生还者池的大小,默认是2，如果垃圾回收变成了瓶颈，您可以尝试定制生成池设置
+-XX:NewSize: 新生成的池的初始大小。 缺省值为2M。
+-XX:MaxNewSize: 新生成的池的最大大小。缺省值为32M。
+
+
+
+分配内存 堆配置推荐 
+2G -Xmx1344M -Xms1344M -Xmn448M -XX:MaxMetaspaceSize=192M -XX:MetaspaceSize=192M 
+3G -Xmx2048M -Xms2048M -Xmn768M -XX:MaxMetaspaceSize=256M -XX:MetaspaceSize=256M 
+4G -Xmx2688M -Xms2688M -Xmn960M -XX:MaxMetaspaceSize=256M -XX:MetaspaceSize=256M 
+5G -Xmx3392M -Xms3392M -Xmn1216M -XX:MaxMetaspaceSize=512M -XX:MetaspaceSize=512M 
+6G -Xmx4096M -Xms4096M -Xmn1536M -XX:MaxMetaspaceSize=512M -XX:MetaspaceSize=512M 
+7G -Xmx4736M -Xms4736M -Xmn1728M -XX:MaxMetaspaceSize=512M -XX:MetaspaceSize=512M 
+8G -Xmx5440M -Xms5440M -XX:MaxMetaspaceSize=512M -XX:MetaspaceSize=512M
+```
+
