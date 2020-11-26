@@ -171,6 +171,8 @@ SELECT A.constraint_name, A.table_name, b.constraint_name
    AND b.constraint_type = 'P'
    AND A.r_constraint_name = b.constraint_name
    AND A.constraint_name = UPPER('FKACFPI7FJUU60FQUY0S54CGYP5')
+   
+select constraint_name,constraint_type,table_name from all_constraints where CONSTRAINT_NAME='SYS_C00463447';
 ```
 
 
@@ -410,6 +412,31 @@ end;
 
 ```
 sys登录后,执行：“alter user sys identified by password”，其中password为修改后的密码
+```
+
+#### Oracle锁表相关
+
+```sql
+--查看被锁表信息
+select sess.sid,sess.serial#, lo.oracle_username,lo.os_user_name, ao.object_name,lo.locked_mode  from v$locked_object lo,dba_objects ao,v$session sess where ao.object_id=lo.object_id and lo.session_id=sess.sid;
+--杀掉锁表进程
+SQL > alter system kill session '68,51';--分别为SID和SERIAL#号
+
+--查看数据库引起锁表的SQL语句 
+SELECT A.USERNAME,
+       A.MACHINE,
+       A.PROGRAM,
+       A.SID,
+       A.SERIAL#,
+       A.STATUS,
+       C.PIECE,
+       C.SQL_TEXT
+  FROM V$SESSION A, V$SQLTEXT C
+ WHERE A.SID IN (SELECT DISTINCT T2.SID
+                   FROM V$LOCKED_OBJECT T1, V$SESSION T2
+                  WHERE T1.SESSION_ID = T2.SID)
+   AND A.SQL_ADDRESS = C.ADDRESS(+)
+ ORDER BY C.PIECE;
 ```
 
 
