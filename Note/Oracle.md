@@ -439,6 +439,12 @@ SELECT A.USERNAME,
  ORDER BY C.PIECE;
 ```
 
+#### 查询结果转为大、小写
+
+```
+SELECT lower(Sname),upper(Depart) FROM xxx
+```
+
 
 
 ## 报错

@@ -329,5 +329,18 @@
   export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
   ```
   
+  #### 端口占用
   
-
+  ```
+  lsof -i:3306
+  ```
+  
+  
+  
+  #### mysql
+  
+  ```
+  /usr/local/mysql/data
+  ```
+  
+  
