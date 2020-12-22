@@ -66,7 +66,7 @@ drop table gams_datatrans;
 ```
 processinstanceinfo表的id保持和processinstancelog表的id相同
 
-alter table processinstanceinfo AUTO_INCREMENT=6001；
+alter table processinstanceinfo AUTO_INCREMENT=6001;
 ```
 
 ​	

@@ -344,3 +344,17 @@
   ```
   
   
+  
+  #### centos7查看端口对外是否可以访问
+  
+  ```
+  firewall-cmd --query-port=80/tcp
+  ```
+  
+  开启端口
+  
+  ```
+  firewall-cmd --add-port=80/tcp
+  ```
+  
+  

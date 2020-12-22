@@ -68,7 +68,7 @@
 2. 部分表的导入导出：
 
    ```
-   exp(imp)  username/password@SERVICENAME:1521 file="e：\temp.dmp" tabels=(table1,table2,table3,...);
+   exp(imp)  username/password@SERVICENAME:1521 file="e：\temp.dmp" tables=(table1,table2,table3,...);
    ```
 
 3. 表空间tablespaces导入导出（一个数据库实例可以有N个表空间(tablespace)，一个表空间下可以有N张表(table)）
@@ -92,6 +92,14 @@
    ```
    expdp xinxiaoyong/123456@127.0.0.1:1521 schemas=xinxiaoyong dumpfile=test.dmplogfile=test.log directory=testdata1;
    （schemas：导出操作的用户名;dumpfile：导出的文件;logfile:导出的日志文件,可以不写；directory:创建的文件夹名称;remap_schema=源数据库用户名:目标数据库用户名,二者不同时必写，相同可以省略;）
+   ```
+   
+   
+   
+3. 导出指定表
+
+   ```
+   expdp cqdzgczyxy_zcgl_test/cqdzgczyxy_zcgl_test dumpfile=1.dmp directory=DMP_DIR_CQ tables =NP_USER_l,NP_PASSWORD_l,AUTHZ_IDENTITY_l,GAMS_USER_ORG_REL_l,AUTHZ_USER_IDENTITY_l,AUTHZ_RULE_AUTHORIZATION_l,AUTHZ_IDENTITY_ROLE_l
    ```
 
 ## select 
