@@ -201,3 +201,125 @@ savepoint a;//设置保存点
 rollback to a;
 ```
 
+### 视图
+
+```
+创建：create or replace view name as select * from a;
+修改：alter view name as select * from a;
+删除：drop view name;
+查看：desc name;
+```
+
+视图和表一样可以进行增、删、改（部分）、查操作，但是一般会给视图限制权限，只读。
+
+### 变量
+
+系统变量：
+
+​			全局变量
+
+​			会话变量
+
+自定义变量：
+
+​			用户变量
+
+​			局部变量
+
+```
+全局变量：变量由系统提供。
+作用域：服务器每次启动将为所有全局变量赋初始值，针对所有会话（连接）有效，但不能跨重启。
+1、查看所有系统变量
+show global|【session】 variables;
+2、带条件系统变量
+show global|【session】 variables like '%a';
+3、查看指定变量值
+select @@global|【session】.变量名;
+4、赋值
+（1）set global|【session】 变量名 = 值;
+（1）set @@global|【session】.变量名 = 值;
+```
+
+```
+会话变量
+作用域：仅仅针对当前会话（连接）有效。
+1、查看所有会话变量
+（1）show  variables;
+（2）show session variables;
+2、带条件系统变量
+show session variables like '%a';
+3、查看指定变量值
+select @@session.变量名;
+4、赋值
+（1）set session 变量名 = 值;
+（1）set @@session.变量名 = 值;
+```
+
+```
+用户变量
+作用域：针对当前会话(连接)有效，同于会话变量作用域。
+1、声明并初始化 = 或：=
+(1)set @用户变量名 = 值;
+(2)set @用户变量名：= 值;
+(3)select @用户变量名：= 值;
+2、赋值
+（1） 与声明语句相同
+（2）通过select into
+select 字段 into 变量名 from 表;
+3、查看变量值
+select @用户变量名;
+```
+
+```
+局部变量
+作用域：仅仅在定义它的begin end 中有效,应用在begin end 中的第一句话。
+1、声明
+declare 变量名 类型 【default 值】；
+2、赋值
+方式一：
+(1)set @局部变量名 = 值;
+(2)set @局部变量名：= 值;
+(3)select @局部变量名：= 值;
+方式二：
+(1)通过select into
+(2)select 字段 into 局部变量名 from 表;
+3、查看
+select 局部变量名;
+```
+
+### 存储过程和函数
+
+```
+类似于java中的方法
+好处：1、提高代码重用性；2、简化操作。
+```
+
+#### 存储过程
+
+```
+含义：一组预先编译好的SQL语句的集合，理解成批处理语句。
+```
+
+```
+语法：
+一、创建
+create procedure 存储过程名(参数列表)
+begin 
+	存储过程体（一组合法的SQL语句）
+end
+注意：
+1、参数列表包含三部分
+参数模式、参数名、参数类型
+参数模式：
+in ：该参数可作为输入，需要调用方传入值。
+out：该参数可以作为输出。可作为返回值。
+inout：既可以作为输入，也可以作为返回值。
+2、如果存储过程体只有一句话，begin end 可省略。
+过程体中的每条SQL语句结尾必须加分号。存储过程结尾可以使用delimiter 重新设置
+语法：
+delimiter 结束标记
+delimiter $
+二、调用
+call 存储过程名（实参列表）;
+```
+
