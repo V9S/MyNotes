@@ -311,6 +311,12 @@ sys_guid()
 create index index_name on table (column_name);
 ```
 
+#### 删除索引
+
+```sql
+drop index index_name ;
+```
+
 #### 创建新字段 ####
 
 ```

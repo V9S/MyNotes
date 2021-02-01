@@ -115,5 +115,89 @@ create table 表名(列明 类型 【(长度) 约束】，....);
 drop table books;
 ```
 
+#### 表复制
 
+```sql
+仅复制表的结构：create table book like books;
+复制结构及数据：create table book select * from books;
+```
+
+### 常见数据类型
+
+数值型：
+
+​			整型
+
+​			小数：定点数、浮点数
+
+字符型：
+
+​			较短文本：char、varchar
+
+​			较长文本：text、blob（较长二进制数据）
+
+### 约束
+
+约束分类：
+
+```sql
+not null
+default：默认值
+primary key：主键，保证字段值唯一且非空
+unique：唯一，可为空
+check：检查约束（mysql中不支持）
+foreign key：外键，限制两个表的关系，用于保证该字段必须来源于主表关联列的值。
+```
+
+### 指令
+
+```
+show engines; 显示mysql引擎。
+```
+
+```
+show variables;显示系统变量。
+```
+
+
+
+#### 将多个语句作为为同一事务
+
+```
+set autocommit = 1;
+start transaction;
+语句1，语句2...
+commit;(rollback)
+```
+
+### 事务隔离级别
+
+```
+					脏读	不可重复读	幻读
+read uncommitted	1		1		1
+read committed		0		1		1
+repeatable read		0		0		1
+serializable		0		0		0
+
+mysql默认repeatable read
+oracle默认read committed
+
+查看隔离级别
+select @@tx_isolation;
+设置隔离级别
+set session|global transaction isolation level 隔离级别;
+```
+
+#### 保存点：savepoint（搭配rollback使用）
+
+```
+set autocommit = 1;
+start transaction;
+语句1，
+
+savepoint a;//设置保存点
+
+语句2...
+rollback to a;
+```
 
