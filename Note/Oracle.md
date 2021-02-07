@@ -243,6 +243,21 @@ insert all
 2、insert into table1 (column_name(s)) SELECT column_name(s) from table2;
 ```
 
+#### 循环插入
+
+```
+declare
+  cursor c1 is
+    select id from gams_assetchange_detail d where d.master_id = '16FCC706E992471CB0F0C08E4968DEB4';
+begin
+  for n1 in c1 loop
+    insert into gams_assetchange_increase (ID, master_id, Shebmc, Xingh, CHANGJ, Shul, JIAZ, Gongys) values(sys_guid(),n1.id,'购设备进行费用均摊', 'X', 'X', 1,
+    2790.99, 'X');
+  end loop;
+  commit;
+end;
+```
+
 
 
 ## delete
