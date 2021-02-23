@@ -126,42 +126,50 @@
   2、
   ```
 
+  7、启动MySQL报错
+
+  ```
+
+  ```
+  
+  
+
   ## Linux下安装Oracle19c
 
   1、查看依赖软件包安装情况
-
+  
   ```
-  rpm --query --queryformat "%{NAME}-%{VERSION}.%{RELEASE} (%{ARCH})\n" bc binutils compat-libcap1 compat-libstdc++-33 gcc gcc-c++ glibc glibc-devel ksh libaio libaio-devel libgcc libstdc++ libstdc++-devel make sysstat elfutils-libelf elfutils-libelf-devel fontconfig-devel libxcb smartmontools libX11 libXau libXtst libXrender libXrender-devel
+rpm --query --queryformat "%{NAME}-%{VERSION}.%{RELEASE} (%{ARCH})\n" bc binutils compat-libcap1 compat-libstdc++-33 gcc gcc-c++ glibc glibc-devel ksh libaio libaio-devel libgcc libstdc++ libstdc++-devel make sysstat elfutils-libelf elfutils-libelf-devel fontconfig-devel libxcb smartmontools libX11 libXau libXtst libXrender libXrender-devel
   ```
 
   2、安装软件包
-
+  
   ```
   yum install -y compat-libcap1 compat-libstdc++-33 gcc-c++ ksh libaio-devel libstdc++-devel elfutils-libelf-devel fontconfig-devel libXrender-devel（未完全安装，需手动yum install 安装）
   ```
-
+  
   3、创建oracle用户组
-
+  
   ```
   groupadd oinstall
   groupadd dba
-  groupadd asmdba
+groupadd asmdba
   groupadd backupdba
-  groupadd dgdba
+groupadd dgdba
   groupadd kmdba
   groupadd racdba
   groupadd oper
-  useradd -g oinstall -G dba,asmdba,backupdba,dgdba,kmdba,racdba,oper -m oracle
+useradd -g oinstall -G dba,asmdba,backupdba,dgdba,kmdba,racdba,oper -m oracle
   ```
 
   4、配置域名解析文件（暂定）
-
+  
   ```
   vi /etc/hosts
   ```
-
+  
   5、配置系统内核参数
-
+  
   ```
   1、vi /etc/sysctl.conf 
   2、赋值下列配置：
@@ -170,19 +178,19 @@
   kernel.shmall = 16451328
   kernel.shmmax = 33692319744
   kernel.shmmni = 4096
-  kernel.sem = 250 32000 100 128
+kernel.sem = 250 32000 100 128
   net.ipv4.ip_local_port_range = 9000 65500
-  net.core.rmem_default = 262144
+net.core.rmem_default = 262144
   net.core.rmem_max = 4194304
-  net.core.wmem_default = 262144
+net.core.wmem_default = 262144
   net.core.wmem_max = 1048576
   3、输入sysctl -P使配置生效：/sbin/sysctl -p
   ```
-
+  
   6、关闭selinux和防火墙
-
+  
   7、配置用户环境
-
+  
   ```
   1、登入oracle：su - oracle
   2、修改文件：vi .bash_profile 
@@ -202,17 +210,17 @@
   export ORACLE_HOME=/u01/app/oracle/product/19.5.0
   export PATH=$PATH:$ORACLE_HOME/bin:/usr/local/bin
   export ORACLE_HOSTNAME=ywxtdb
-  export ORACLE_SID=ywxtdb
+export ORACLE_SID=ywxtdb
   export LD_LIBRARY_PATH=$ORACLE_HOME/lib:$ORACLE_HOME/rdbms/lib:$ORACLE_HOME/network/lib:/lib:/usr/lib
-  export CLASSPATH=$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib:$ORACLE_HOME/network/jlib
+export CLASSPATH=$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib:$ORACLE_HOME/network/jlib
   
   3、创建oracle安装目录
   [root@host-173-16-87-178 ~]# mkdir /u01
   [root@host-173-16-87-178 ~]# chmod 777 /u01
   ```
-
+  
   8、修改用户的Shell限制
-
+  
   ```
   1、vi /etc/security/limits.conf 
   
@@ -279,7 +287,7 @@
   #@faculty        hard    nproc           50
   #ftp             hard    nproc           0
   #@student        -       maxlogins       4
-  
+
   # End of file
   # Set Oracle Database Server
   @oinstall soft nofile 2048
@@ -287,7 +295,7 @@
   @oinstall soft nproc 16384
   @oinstall soft stack 10240
   ```
-
+  
   ### 安装jdk
   
   一、登录虚拟机进入终端切换到root用户，输入：su 接着输入密码 再输入：cd … 回到root用户
