@@ -68,3 +68,77 @@
 8G -Xmx5440M -Xms5440M -XX:MaxMetaspaceSize=512M -XX:MetaspaceSize=512M
 ```
 
+
+
+### jvm指令
+
+- jps 查看正在运行的java进程
+
+- jstat：查看jvm统计信息
+
+  ```
+  jstat -<option> [-t] [-h<lines>] <vmid> [<interval> [<count>]]
+  ```
+
+  ##### 参数：
+
+  ```
+  interval：指定统计数据周期，单位毫秒。即查询间隔。
+  
+  count：指定查询总次数。
+  
+  -t ：显示程序运行时间，单位秒。即程序总计运行时间。
+  
+  -h：多少秒再次后输出表头
+  ```
+
+  ##### option
+
+  ```
+  gc
+  ```
+
+  
+
+- jinfo：实时查看和修改jvm配置参数
+
+  ```
+  jinfo [option] <pid>
+  ```
+
+  查看：
+
+  jinfo -sysprops pid
+
+  jinfo -flags pid 查看曾经赋过值的一些参数
+
+  jinfo -flag 具体参数 pid 查看具体指
+
+  修改(只有部分可修改)：
+
+  针对boolean值 ：jinfo -flag [+|-] 具体参数 pid
+
+  非boolean值：jinfo -flag 具体参数 = 值 pid
+
+- jmap：导出内存映像文件和内存使用情况
+
+  手动导出：
+
+  ```
+  jmap -dump:format=b,file=<filename.hprof> <pid>
+  
+  jmap -dump:live,format=b,file=<filename.hprof> <pid>(只保存堆中存活的对象)
+  ```
+
+  自动方式：
+
+  ```
+  #出现 OOME 时生成堆 dump: 
+  -XX:+HeapDumpOnOutOfMemoryError
+  #生成堆文件地址：
+  -XX:HeapDumpPath=/home/liuke/jvmlogs/
+  ```
+
+- 
+
+  
