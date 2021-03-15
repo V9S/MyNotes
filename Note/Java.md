@@ -139,6 +139,8 @@
   -XX:HeapDumpPath=/home/liuke/jvmlogs/
   ```
 
-- 
 
-  
+
+### 启动参数
+
+-Xmx4096M -Xms4096M -Xmn1536M -XX:MaxMetaspaceSize=512M -XX:MetaspaceSize=512M
