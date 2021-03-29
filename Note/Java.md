@@ -144,3 +144,9 @@
 ### 启动参数
 
 -Xmx4096M -Xms4096M -Xmn1536M -XX:MaxMetaspaceSize=512M -XX:MetaspaceSize=512M
+
+### 将Tomcat注册为Windows服务
+
+注册：进入bin目录执行service.bat install  [service_name]
+
+卸载：service.bat remove  [service_name]
