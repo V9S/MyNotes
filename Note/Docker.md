@@ -72,3 +72,10 @@ docker ps --no-trunc
 docker inspect <CONTAINER-NAME> OR <CONTAINER-ID>
 ```
 
+### docker cp
+
+将主机/www/runoob目录拷贝到容器96f7f14e99ab的/www目录下。
+
+```
+	docker cp /www/runoob 96f7f14e99ab:/www/
+```

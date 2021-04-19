@@ -147,6 +147,21 @@
 
 ### 将Tomcat注册为Windows服务
 
+```
 注册：进入bin目录执行service.bat install  [service_name]
 
 卸载：service.bat remove  [service_name]
+```
+
+
+
+### 将Nacos注册为Windows服务
+
+```
+创建服务：sc create nacos  binPath= D:\Java\CQ_NEW\nacos\bin\startup.cmd
+```
+
+```
+删除服务：sc delete nacos;
+```
+
