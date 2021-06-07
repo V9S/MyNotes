@@ -28,3 +28,10 @@ pom依赖
 ```
 由于<scope>标签，test表示只能在src下的test文件夹下面才可
 如果在main 文件夹下使用	去掉scope 即可
+
+#### 手动加载jar包到仓库
+
+```
+mvn install:install-file -Dfile=E:\Google\kaptcha-2.3.0.jar -DgroupId=com.google.code.kaptcha -DartifactId=kaptcha -Dversion=2.3 -Dpackaging=jar
+```
+
