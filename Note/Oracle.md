@@ -27,7 +27,6 @@
    ```
    1. imp np_test/np_test@orcl file=E:\test_np.DMP full=y ignore=y;
    ```
-   
 ### 数据泵导入（数据库较大时）
 
 1. 重复 普通导入的前三步
@@ -74,7 +73,7 @@
 3. 表空间tablespaces导入导出（一个数据库实例可以有N个表空间(tablespace)，一个表空间下可以有N张表(table)）
 
    ```
-   exp(imp)  username/password@SERVICENAME:1521 file="e:\temp.dmp" tablespaces=(tablespace1,tablespace2,tablespace3,...);
+   exp(imp)  username/password@SERVICENAME:1521 file="e:\temp.dmp" tablespaces=tablespace1,tablespace2,tablespace3,...;
    ```
 
 4. 用户名username对象导入导出
@@ -503,7 +502,6 @@ SELECT lower(Sname),upper(Depart) FROM xxx
   由于 ORACLE 错误 6550解决办法
 
 > 解决办法：在导入语句后面加上STATISTICS=NONE 再只执行语句即可
->
 
 
 
