@@ -13,6 +13,7 @@
 - SHIFT + F2 ：将光标放在方法或者类上，打开文档
 - ctrl + shift + x : 将字母转换为大写
 - ctrl + shift + y : 将字母转换为小写
+- alt + shift +l ：自动生成变量名
 
 ### JVM设置
 
